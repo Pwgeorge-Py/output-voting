@@ -1,0 +1,52 @@
+[
+  {
+    "uid": "11111111-1111-1111-1111-111111111111",
+    "model_name": "gpt-4",
+    "context_id": "ctx-climate-change",
+    "context": "## Background\n\nClimate change refers to long-term shifts in global temperatures and weather patterns. While some natural variation has always occurred, since the Industrial Revolution human activities — primarily the burning of fossil fuels — have become the dominant driver of change. Rising CO₂ concentrations trap heat in the atmosphere, leading to warming oceans, melting ice caps, more frequent extreme weather events, and shifting ecosystems.\n\nKey data points:\n- Global average temperature has risen ~1.1 °C since pre-industrial times.\n- CO₂ concentration reached 421 ppm in 2023, the highest in 3 million years.\n- Sea levels are rising at ~3.7 mm/year.\n- The IPCC warns that limiting warming to 1.5 °C requires halving emissions by 2030.",
+    "prompt": "In 2-3 sentences, explain the main cause of climate change to a general audience.",
+    "output_text": "Climate change is primarily driven by the burning of fossil fuels like coal, oil, and gas, which releases carbon dioxide and other greenhouse gases into the atmosphere. These gases act like a blanket around Earth, trapping heat and causing global temperatures to rise. The resulting changes disrupt weather patterns, melt glaciers, and threaten ecosystems worldwide.",
+    "vote_count": 0,
+    "shown_count": 0
+  },
+  {
+    "uid": "22222222-2222-2222-2222-222222222222",
+    "model_name": "claude-3-opus",
+    "context_id": "ctx-climate-change",
+    "context": "## Background\n\nClimate change refers to long-term shifts in global temperatures and weather patterns. While some natural variation has always occurred, since the Industrial Revolution human activities — primarily the burning of fossil fuels — have become the dominant driver of change. Rising CO₂ concentrations trap heat in the atmosphere, leading to warming oceans, melting ice caps, more frequent extreme weather events, and shifting ecosystems.\n\nKey data points:\n- Global average temperature has risen ~1.1 °C since pre-industrial times.\n- CO₂ concentration reached 421 ppm in 2023, the highest in 3 million years.\n- Sea levels are rising at ~3.7 mm/year.\n- The IPCC warns that limiting warming to 1.5 °C requires halving emissions by 2030.",
+    "prompt": "In 2-3 sentences, explain the main cause of climate change to a general audience.",
+    "output_text": "When we burn fossil fuels for energy, we release greenhouse gases that wrap around the planet and trap warmth that would otherwise escape into space — much like a car left in the sun heats up far faster than the air outside. Human industry has pumped enough of these gases since the 1800s to push global temperatures to their highest level in millions of years. The consequences range from stronger hurricanes and prolonged droughts to rising seas that threaten coastal communities.",
+    "vote_count": 0,
+    "shown_count": 0
+  },
+  {
+    "uid": "33333333-3333-3333-3333-333333333333",
+    "model_name": "gemini-pro",
+    "context_id": "ctx-climate-change",
+    "context": "## Background\n\nClimate change refers to long-term shifts in global temperatures and weather patterns. While some natural variation has always occurred, since the Industrial Revolution human activities — primarily the burning of fossil fuels — have become the dominant driver of change. Rising CO₂ concentrations trap heat in the atmosphere, leading to warming oceans, melting ice caps, more frequent extreme weather events, and shifting ecosystems.\n\nKey data points:\n- Global average temperature has risen ~1.1 °C since pre-industrial times.\n- CO₂ concentration reached 421 ppm in 2023, the highest in 3 million years.\n- Sea levels are rising at ~3.7 mm/year.\n- The IPCC warns that limiting warming to 1.5 °C requires halving emissions by 2030.",
+    "prompt": "In 2-3 sentences, explain the main cause of climate change to a general audience.",
+    "output_text": "The main cause of climate change is the increase in greenhouse gases — especially carbon dioxide — released when we burn fossil fuels for electricity, heat, and transportation. These gases form an insulating layer around Earth that prevents heat from escaping, steadily warming the planet. Without significant cuts to emissions, scientists warn we face increasingly severe impacts including extreme weather, food insecurity, and displacement of millions of people.",
+    "vote_count": 0,
+    "shown_count": 0
+  },
+  {
+    "uid": "44444444-4444-4444-4444-444444444444",
+    "model_name": "gpt-4",
+    "context_id": "ctx-photosynthesis",
+    "context": "## Topic: Photosynthesis\n\nPhotosynthesis is the process by which plants, algae, and some bacteria convert light energy into chemical energy stored as glucose. It occurs primarily in chloroplasts, using the green pigment chlorophyll to absorb sunlight. The overall reaction combines carbon dioxide and water in the presence of light to produce glucose and oxygen:\n\n**6CO₂ + 6H₂O + light energy → C₆H₁₂O₆ + 6O₂**\n\nPhotosynthesis has two main stages:\n1. **Light-dependent reactions** (in the thylakoid membrane): capture solar energy and produce ATP, NADPH, and oxygen.\n2. **Calvin cycle / light-independent reactions** (in the stroma): use ATP and NADPH to fix CO₂ into glucose.",
+    "prompt": "Describe photosynthesis in simple terms suitable for a 10-year-old.",
+    "output_text": "Photosynthesis is like a plant's way of making its own food using sunlight! Plants take in water through their roots and carbon dioxide gas through tiny holes in their leaves. Then, using the energy from sunlight, they mix these together inside special green parts of their leaves called chloroplasts to make sugar — which is the plant's food. As a bonus, they release oxygen into the air, which is what we breathe!",
+    "vote_count": 0,
+    "shown_count": 0
+  },
+  {
+    "uid": "55555555-5555-5555-5555-555555555555",
+    "model_name": "claude-3-opus",
+    "context_id": "ctx-photosynthesis",
+    "context": "## Topic: Photosynthesis\n\nPhotosynthesis is the process by which plants, algae, and some bacteria convert light energy into chemical energy stored as glucose. It occurs primarily in chloroplasts, using the green pigment chlorophyll to absorb sunlight. The overall reaction combines carbon dioxide and water in the presence of light to produce glucose and oxygen:\n\n**6CO₂ + 6H₂O + light energy → C₆H₁₂O₆ + 6O₂**\n\nPhotosynthesis has two main stages:\n1. **Light-dependent reactions** (in the thylakoid membrane): capture solar energy and produce ATP, NADPH, and oxygen.\n2. **Calvin cycle / light-independent reactions** (in the stroma): use ATP and NADPH to fix CO₂ into glucose.",
+    "prompt": "Describe photosynthesis in simple terms suitable for a 10-year-old.",
+    "output_text": "Imagine a plant is a tiny chef. Every morning, this chef gathers ingredients: sunlight from the sky, water drunk up through the roots, and carbon dioxide — a gas floating in the air that we breathe out. The chef mixes all three together inside the green leaves, and — like magic — turns them into sugar, which is the plant's lunch. The great part? Making that sugar also produces oxygen, the very air we need to breathe. So plants feed themselves and help us breathe at the same time!",
+    "vote_count": 0,
+    "shown_count": 0
+  }
+]
