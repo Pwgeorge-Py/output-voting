@@ -12,5 +12,6 @@ class ModelOutputCandidate(BaseModel):
     context: str # external knowledge that was used to build the prompt
     prompt: str # prompt used to generate output_text
     output_text: str
+    goal: str = "unspecified" # purpose of this comparison group, e.g. "model comparison"
     vote_count: int = 0 # Number of times canidate was voted for out of options
     shown_count: int = 0 # Number of times candidate shown to user
