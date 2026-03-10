@@ -1,14 +1,13 @@
 import itertools
 import json
 import logging
-import os
 import random
 from datetime import datetime, timezone
-from pathlib import Path
 
 import streamlit as st
 
 from input_datamodel import ModelOutputCandidate
+from settings import settings
 
 logging.basicConfig(
     level=logging.INFO,
@@ -17,23 +16,19 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-DATA_DIR = Path(os.environ.get("DATA_DIR", "/data"))
-CANDIDATES_FILE = DATA_DIR / "candidates.json"
-RESULTS_FILE = DATA_DIR / "results.json"
-
 # ---------------------------------------------------------------------------
 # Data helpers
 # ---------------------------------------------------------------------------
 
 def load_candidates() -> list[ModelOutputCandidate]:
     """Load and parse candidates from the mounted JSON file."""
-    if not CANDIDATES_FILE.exists():
+    if not settings.candidates_file.exists():
         st.error(
-            f"Candidates file not found at `{CANDIDATES_FILE}`. "
+            f"Candidates file not found at `{settings.candidates_file}`. "
             "Mount a JSON file containing a list of ModelOutputCandidate objects."
         )
         st.stop()
-    raw = json.loads(CANDIDATES_FILE.read_text())
+    raw = json.loads(settings.candidates_file.read_text())
     return [ModelOutputCandidate(**item) for item in raw]
 
 
@@ -56,11 +51,11 @@ def build_rounds(
 
 def append_result(result: dict) -> None:
     """Append a single vote result to the shared results file."""
-    RESULTS_FILE.parent.mkdir(parents=True, exist_ok=True)
-    text = RESULTS_FILE.read_text().strip() if RESULTS_FILE.exists() else ""
+    settings.results_file.parent.mkdir(parents=True, exist_ok=True)
+    text = settings.results_file.read_text().strip() if settings.results_file.exists() else ""
     existing = json.loads(text) if text else []
     existing.append(result)
-    RESULTS_FILE.write_text(json.dumps(existing, indent=2, default=str))
+    settings.results_file.write_text(json.dumps(existing, indent=2, default=str))
 
 
 def record_vote(winner: ModelOutputCandidate, loser: ModelOutputCandidate) -> dict:
@@ -128,8 +123,7 @@ def render_progress(idx: int, total: int) -> None:
 
 
 def render_context(candidate: ModelOutputCandidate) -> None:
-    """Render the goal label and shared context."""
-    st.caption(f"Goal: **{candidate.goal}**")
+    """Render the shared context."""
     with st.expander("Context", expanded=True):
         st.markdown(candidate.context)
 
@@ -181,6 +175,7 @@ def main() -> None:
 
     render_progress(idx, len(rounds))
     render_context(candidate_a)
+    st.header(candidate_a.goal)
     render_voting_columns(candidate_a, candidate_b)
 
 
