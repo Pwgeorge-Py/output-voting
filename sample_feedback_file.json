@@ -1,0 +1,11 @@
+{
+"uid": "11111111-1111-1111-1111-111111111111",
+"model_name": "gpt-4",
+"context_id": "ctx-climate-change",
+"context": "## Background\n\nClimate change refers to long-term shifts in global temperatures and weather patterns. While some natural variation has always occurred, since the Industrial Revolution human activities — primarily the burning of fossil fuels — have become the dominant driver of change. Rising CO₂ concentrations trap heat in the atmosphere, leading to warming oceans, melting ice caps, more frequent extreme weather events, and shifting ecosystems.\n\nKey data points:\n- Global average temperature has risen ~1.1 °C since pre-industrial times.\n- CO₂ concentration reached 421 ppm in 2023, the highest in 3 million years.\n- Sea levels are rising at ~3.7 mm/year.\n- The IPCC warns that limiting warming to 1.5 °C requires halving emissions by 2030.",
+"prompt": "In 2-3 sentences, explain the main cause of climate change to a general audience.",
+"output_text": "Climate change is primarily driven by the burning of fossil fuels like coal, oil, and gas, which releases carbon dioxide and other greenhouse gases into the atmosphere. These gases act like a blanket around Earth, trapping heat and causing global temperatures to rise. The resulting changes disrupt weather patterns, melt glaciers, and threaten ecosystems worldwide.",
+"goal": "model comparison",
+"vote_count": 0,
+"shown_count": 0
+}

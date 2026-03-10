@@ -58,6 +58,15 @@ def append_result(result: dict) -> None:
     settings.results_file.write_text(json.dumps(existing, indent=2, default=str))
 
 
+def load_feedback_candidate() -> ModelOutputCandidate:
+    """Load the single candidate to display in the feedback stage from FEEDBACK_CANDIDATE_FILE."""
+    path = settings.feedback_file
+    if not path or not path.exists():
+        st.error(f"Feedback candidate file not found at `{path}`.")
+        st.stop()
+    return ModelOutputCandidate(**json.loads(path.read_text()))
+
+
 def record_vote(winner: ModelOutputCandidate, loser: ModelOutputCandidate) -> dict:
     """Build a result dict and log the vote."""
     result = {
@@ -93,6 +102,7 @@ def init_state() -> None:
         st.session_state.current_idx = 0
         st.session_state.results = []
         st.session_state.done = len(rounds) == 0
+        st.session_state.feedback_done = False
 
 
 def submit_vote(winner: ModelOutputCandidate, loser: ModelOutputCandidate) -> None:
@@ -107,14 +117,67 @@ def submit_vote(winner: ModelOutputCandidate, loser: ModelOutputCandidate) -> No
     if st.session_state.current_idx >= len(st.session_state.rounds):
         st.session_state.done = True
 
+
+def submit_feedback(candidate: ModelOutputCandidate, feedback_text: str) -> None:
+    """Persist improvement feedback and mark the feedback stage complete."""
+    result = {
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "type": "improvement_feedback",
+        "context_id": candidate.context_id,
+        "goal": candidate.goal,
+        "candidate_uid": str(candidate.uid),
+        "candidate_model": candidate.model_name,
+        "feedback": feedback_text,
+    }
+    logger.info(
+        "feedback | context_id=%s | candidate=%s (%s) | feedback=%r",
+        result["context_id"],
+        result["candidate_uid"],
+        result["candidate_model"],
+        feedback_text,
+    )
+    append_result(result)
+    st.session_state.feedback_done = True
+
 # ---------------------------------------------------------------------------
 # UI components
 # ---------------------------------------------------------------------------
 
 def render_done() -> None:
     """Show the completion screen."""
-    st.success(f"All voting rounds complete! {len(st.session_state.results)} votes recorded.")
+    st.success(f"All done! {len(st.session_state.results)} votes recorded. Thank you!")
     st.stop()
+
+
+def render_feedback(candidate: ModelOutputCandidate) -> None:
+    """Show the top-voted output and collect improvement suggestions."""
+    st.info("Voting complete! Before you finish, please review the below and share any suggestions for improvement.")
+    st.divider()
+
+    with st.expander("Context", expanded=True):
+        st.markdown(candidate.context)
+
+    st.header(candidate.goal)
+    st.subheader("Current default tool output:")
+    st.markdown(candidate.output_text)
+
+    st.divider()
+    feedback = st.text_area(
+        "How could this output be improved?",
+        placeholder="e.g. needs to follow a specific format, needs more detail about X, tone should be more concise…",
+        height=150,
+        key="feedback_input",
+    )
+
+    col_submit, col_skip = st.columns([1, 5])
+    with col_submit:
+        if st.button("Submit feedback", type="primary", use_container_width=True):
+            submit_feedback(candidate, feedback.strip())
+            st.rerun()
+    with col_skip:
+        if st.button("Skip", use_container_width=True):
+            submit_feedback(candidate, "")
+            st.rerun()
 
 
 def render_progress(idx: int, total: int) -> None:
@@ -163,7 +226,11 @@ def main() -> None:
     init_state()
 
     if st.session_state.done:
-        render_done()
+        if st.session_state.feedback_done:
+            render_done()
+        else:
+            render_feedback(load_feedback_candidate())
+        st.stop()
 
     rounds = st.session_state.rounds
     idx = st.session_state.current_idx
