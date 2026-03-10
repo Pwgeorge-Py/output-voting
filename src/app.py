@@ -51,11 +51,11 @@ def build_rounds(
 
 def append_result(result: dict) -> None:
     """Append a single vote result to the shared results file."""
-    settings.results_file.parent.mkdir(parents=True, exist_ok=True)
-    text = settings.results_file.read_text().strip() if settings.results_file.exists() else ""
+    settings.output_results_file.parent.mkdir(parents=True, exist_ok=True)
+    text = settings.output_results_file.read_text().strip() if settings.output_results_file.exists() else ""
     existing = json.loads(text) if text else []
     existing.append(result)
-    settings.results_file.write_text(json.dumps(existing, indent=2, default=str))
+    settings.output_results_file.write_text(json.dumps(existing, indent=2, default=str))
 
 
 def load_feedback_candidate() -> ModelOutputCandidate:

@@ -67,6 +67,8 @@ cp .env.template .env
 | Variable | Default | Description |
 |---|---|---|
 | `DATA_DIR` | `/data` | Directory containing `candidates.json` and where `results.json` is written |
+| `RESULTS_FILE` | `$DATA_DIR/results.json` | Override the path for the results output file |
+| `FEEDBACK_CANDIDATE_FILE` | `$DATA_DIR/feedback_file.json` | Path to the single candidate shown in the feedback stage |
 
 ## Running with Docker
 
